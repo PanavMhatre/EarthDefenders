@@ -8,6 +8,47 @@ struct ContentView: View {
     @State private var cloud2Offset: CGFloat = UIScreen.main.bounds.width + 150
     @State private var cloud4Offset: CGFloat = UIScreen.main.bounds.width + 150
 
+    var body: some View {
+        ZStack {
+            NavigationView(){
+                ZStack{
+                    
+                    Image("Map-1")
+                    //Title View
+                    
+                    
+                    
+                        Image("pinMapsBlue").resizable().frame(width: 100, height: 150).offset(x: 400, y: -200)
+                    Image("pinMapsGreen").resizable().frame(width: 100, height: 150).offset(x: -450, y: -150)
+                    Image("pinMapsRed").resizable().frame(width: 100, height: 150).offset(y: -320)
+                    Image("Plane-1")
+                        .resizable()
+                        .frame(width: 450, height: 400) // Adjust size as needed
+                        .rotationEffect(.degrees(-5))
+                        .offset(x: planeOffset, y: 300)
+                        .onAppear {
+                            withAnimation(Animation.linear(duration: 15).repeatForever(autoreverses: false)) {
+                                self.planeOffset = UIScreen.main.bounds.width + 150
+                            }
+                        }
+                        
+                    VStack{
+                        Image("title").resizable().frame(width: 600,height: 300)
+                        // Button View
+                        buttonView
+                    }
+                    
+                    cloudsView
+                }
+            }.navigationViewStyle(StackNavigationViewStyle())
+
+            
+        }.onAppear {
+            SoundPlayer.shared.playSound(soundName: "cinematic-documentary-115669", fileType: "mp3")
+        }
+    }
+
+
     var cloudsView: some View{
         ZStack{
             Image("cloud")
