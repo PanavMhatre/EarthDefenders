@@ -114,6 +114,89 @@ struct HomeView: View {
         .padding(.horizontal, 60)
         .transition(AnyTransition.scale.animation(.easeInOut))
     }
+       var backgroundStory2: some View{
+        VStack{
+            HStack{
+                Image("tiger")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                Image("lion")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                Image("fish")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+            }
+            
+            Text(information.infoIntroduction[1])
+                .font(.title)
+                .fontWeight(.semibold)
+                .baselineOffset(4)
+                .kerning(1.5)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(.white)
+                .padding()
+                .padding(.bottom, 30)
+            HStack{
+                Spacer()
+                HStack{
+                    Button(action: {
+                        isBackgroundStory1.toggle()
+                        isBackgroundStory2.toggle()
+                    }, label:{
+                        Image(systemName: "arrow.left")
+                            .font(.title)
+                            .foregroundColor(Color.white.opacity(0.4))
+                            .padding(20)
+                            .background(
+                                Color.black.opacity(0.3)
+                            )
+                            .cornerRadius(25)
+                    })
+                    Button(action: {
+                        isBackgroundStory2.toggle()
+                        isBackgroundStory3.toggle()
+                    }, label:{
+                        Image(systemName: "arrow.right")
+                            .font(.title)
+                            .foregroundColor(Color.white)
+                            .bold()
+                            .padding(.horizontal)
+                            .padding()
+                            .padding(.vertical)
+                            .background(
+                                Color.black.opacity(0.5)
+                            )
+                            .cornerRadius(25)
+                    })
+                }
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .overlay(
+                HStack{
+                    Image("boy1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 150)
+                    
+                }
+                ,alignment: .bottomLeading
+            )
+        }
+        .padding(.top, 50)
+        .padding()
+        .background(
+            Color.brown
+        )
+        .cornerRadius(25)
+        .padding(16)
+        .padding(.horizontal, 60)
+        .transition(AnyTransition.scale.animation(.easeInOut))
+    }
 
     
 
