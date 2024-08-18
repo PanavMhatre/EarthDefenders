@@ -197,7 +197,101 @@ struct HomeView: View {
         .padding(.horizontal, 60)
         .transition(AnyTransition.scale.animation(.easeInOut))
     }
-
+    var backgroundStory3: some View{
+        VStack{
+            HStack{
+                Image("fossilfuels")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                    .overlay(
+                        Image(systemName: "x.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(.red)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                        ,alignment: .bottomLeading
+                        
+                    )
+                Image("greenenergy")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                    .overlay(
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(.green)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                        ,alignment: .bottomLeading
+                        
+                    )
+            }
+            Text(information.infoIntroduction[2])
+                .font(.title)
+                .fontWeight(.semibold)
+                .baselineOffset(4)
+                .kerning(1.5)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(.white)
+                .padding()
+                .padding(.bottom, 30)
+            HStack{
+                Spacer()
+                HStack{
+                    Button(action: {
+                        isBackgroundStory2.toggle()
+                        isBackgroundStory3.toggle()
+                    }, label:{
+                        Image(systemName: "arrow.left")
+                            .font(.title)
+                            .foregroundColor(Color.white.opacity(0.4))
+                            .padding(20)
+                            .background(
+                                Color.black.opacity(0.3)
+                            )
+                            .cornerRadius(25)
+                    })
+                    NavigationLink(destination: MainPage(), label: {
+                        Image(systemName: "arrow.right")
+                            .font(.title)
+                            .foregroundColor(Color.white)
+                            .bold()
+                            .padding(.horizontal)
+                            .padding()
+                            .padding(.vertical)
+                            .background(
+                                Color.black.opacity(0.5)
+                            )
+                            .cornerRadius(25)
+                    })
+                }
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .overlay(
+                HStack{
+                    Image("boy1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 150)
+                    
+                }
+                ,alignment: .bottomLeading
+            )
+        }
+        .padding(.top, 50)
+        .padding()
+        .background(
+            Color.brown
+        )
+        .cornerRadius(25)
+        .padding(16)
+        .padding(.horizontal, 60)
+        .transition(AnyTransition.scale.animation(.easeInOut))
+    }
+    
+}
     
 
 
