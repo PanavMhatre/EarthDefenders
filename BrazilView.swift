@@ -16,6 +16,104 @@ struct BrazilView: View {
     @State var isFinishPlantsTree: Bool = false
     @State var isInfoOpen: Bool = false
 
+    var endemicInfo: some View{
+        ZStack{
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                Image("Brazil")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                
+                Text("Habitat INFO")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .padding(.horizontal)
+                    .background(Color.orange.opacity(0.8))
+                    .cornerRadius(20)
+                VStack(alignment:.leading){
+                    Text("Name")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("Amazon Rainforest")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Text("About")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("The Amazon Rainforest is one of the worldest largest rainforests. It has many unique creatures and plants that are there. However climate change with the increased wood cutting has led to the increased loss of habitat there. The amazon rainforest is a crucial part to the world as it provides most its oxygen.")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Text("Conservation Status")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("Critically Endangered")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                        .background(.red)
+                }
+                Button(action: {
+                    isInfoOpen = false
+                },label: {
+                    
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 75, height: 75)
+                        .shadow(radius: 10)
+                        .overlay(
+                            Image(systemName: "x.circle.fill")
+                                .font(.system(size: 50))
+                                .foregroundColor(Color.red)
+                        )
+                })
+                
+                
+            }
+            .padding(50)
+            .background(
+                Color.brown
+            )
+            .cornerRadius(25)
+            .padding(16)
+            .transition(AnyTransition.scale.animation(.easeInOut))
+        }
+    }
+    var scoreArea: some View{
+        GeometryReader{ geo in
+            HStack{
+                Image("tree1")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 70)
+                    .padding(.horizontal)
+                Text("\(scorePlantsTree) / 4")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+            }.padding()
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(radius: 10)
+                .padding(.horizontal,20)
+        }
+    }
+
+
     var lionArea: some View{
         GeometryReader{ geo in
             Image("lion")
