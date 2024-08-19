@@ -3,6 +3,44 @@ import SwiftUI
 struct MainPage: View {
     @Environment(\.presentationMode) var presentationMode
 
+    var body: some View {
+        ZStack{
+            Image("secondBackground")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                ZStack {
+                    
+                    
+                    Image("continent")
+                        .resizable()
+                        .frame(width: 1200, height: 500)
+                    
+                    countries
+                    
+                    buttonAction
+                }
+                HStack{
+                    Text("Hey👋 \nThere are three different countries that need your help to help save their habitats! Good luck!")
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .frame(width: 500)
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Image("boy8")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
+                }.padding(.bottom, 50)
+            }.onAppear{
+                SoundPlayer.shared.stopSound()
+                SoundPlayer.shared.playSound(soundName: "science-documentary-169621", fileType: "mp3")
+            }
+        }
+        
+    }
+
     var buttonAction: some View{
         GeometryReader{geo in
             HStack{
