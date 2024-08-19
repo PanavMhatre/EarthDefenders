@@ -16,6 +16,51 @@ struct BrazilView: View {
     @State var isFinishPlantsTree: Bool = false
     @State var isInfoOpen: Bool = false
 
+    var buttonInfo: some View{
+        GeometryReader{geo in
+            Button(action: {
+                isInfoOpen = true
+            },label: {
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 75, height: 75)
+                    .shadow(radius: 10)
+                    .overlay(
+                        Image(systemName: "info.circle.fill")
+                            .font(.system(size: 50))
+                            .foregroundColor(Color.blue)
+                    )
+            })
+            .position(x: geo.size.width/1.1)
+            .padding(.top,50)
+        }
+    }
+    var instruction: some View{
+        GeometryReader{geo in
+            ZStack{
+                HStack{
+                    Image("boy8")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width/5)
+                    Text("Hey, look! 👀 \nThe forest where the Lions lives is Deforested. He needs your help \n\n👆DRAG the plants into the square area")
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .frame(width: geo.size.width/2)
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                    Image("girl2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width/5.5)
+                        .offset(x:-30, y: 30)
+                }.position(x: geo.size.width/2, y: geo.size.height/1.15)
+                
+            }
+        }
+    }
+
     var endemicInfo: some View{
         ZStack{
             Color.black.opacity(0.4)
