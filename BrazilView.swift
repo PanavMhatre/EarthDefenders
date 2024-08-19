@@ -15,6 +15,56 @@ struct BrazilView: View {
     @State var scorePlantsTree = 0
     @State var isFinishPlantsTree: Bool = false
     @State var isInfoOpen: Bool = false
+
+    var finishAction: some View{
+        ZStack{
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                Text("CONGRATULATION🌟🌟")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.orange)
+                    .padding()
+                    .padding(.horizontal)
+                    .background(Color.black.opacity(0.8))
+                    .cornerRadius(20)
+                Image("boy6")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                Text("You have completed the challenge of planting trees")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                },label: {
+                    
+                    Text("NEXT")
+                        .font(.system(size: 40))
+                        .fontWeight(.bold)
+                        .foregroundColor(.brown)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                })
+            }
+            .padding(50)
+            .background(
+                Color.brown
+            )
+            .cornerRadius(25)
+            .padding(16)
+            .shadow(radius: 50)
+            .transition(AnyTransition.scale.animation(.easeInOut))
+        }
+        
+    }
+
   
     var treeGroup: some View{
         GeometryReader{ geo in
