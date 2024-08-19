@@ -16,6 +16,39 @@ struct BrazilView: View {
     @State var isFinishPlantsTree: Bool = false
     @State var isInfoOpen: Bool = false
 
+    var lionArea: some View{
+        GeometryReader{ geo in
+            Image("lion")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200)
+                .position(x: geo.size.width / 1.5, y: geo.size.height / 10)
+            Image("lion")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 400)
+                .position(x: geo.size.width / 7, y: geo.size.height / 2)
+        }
+    }
+    var landArea: some View {
+        GeometryReader{ geo in
+            let landAreaRect = CGRect(x: geo.size.width / 6, y: geo.size.height / 8, width: geo.size.width / 1.52, height: geo.size.height / 8)
+            Rectangle()
+                .stroke(Color.black.opacity(0.2), style: StrokeStyle(lineWidth: 10, lineCap: .round, dash: [25]))
+                .frame(width: landAreaRect.width, height: landAreaRect.height)
+                .overlay(
+                    Text("Drop Tree Here")
+                        .foregroundColor(Color.black.opacity(0.5))
+                        .font(.largeTitle)
+                        .bold()
+                        .opacity(isTreeDropInArea ? 0 : 1)
+                    
+                )
+                .position(x: landAreaRect.midX, y: landAreaRect.midY)
+        }
+    }
+
+
     var finishAction: some View{
         ZStack{
             Color.black.opacity(0.4)
