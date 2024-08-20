@@ -21,6 +21,53 @@ struct IndiaView: View {
     @State var scoreCollectTrash = 0
     @State var isFinishCollectTrash: Bool = false
     @State var isInfoOpen: Bool = false
+
+    var finishAction: some View{
+        ZStack{
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                Text("CONGRATULATION🌟")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.orange)
+                    .padding()
+                    .padding(.horizontal)
+                    .background(Color.black.opacity(0.8))
+                    .cornerRadius(20)
+                Image("boy5")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
+                Text("You have completed the trash cleaning challenge")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                },label: {
+                    
+                    Text("NEXT")
+                        .font(.system(size: 40))
+                        .fontWeight(.bold)
+                        .foregroundColor(.brown)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                })
+            }
+            .padding(50)
+            .background(
+                Color.brown
+            )
+            .cornerRadius(25)
+            .padding(16)
+            .transition(AnyTransition.scale.animation(.easeInOut))
+        }
+    }
+
     
     var trash: some View{
         GeometryReader{ geo in
