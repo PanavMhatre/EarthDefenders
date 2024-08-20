@@ -22,7 +22,62 @@ struct IndiaView: View {
     @State var isFinishCollectTrash: Bool = false
     @State var isInfoOpen: Bool = false
 
-    
+    var body: some View {
+        GeometryReader{ geo in
+            let trashCanPosition = CGRect(x: geo.size.width / 2.6, y: geo.size.height / 2, width: geo.size.width / 6.5, height: geo.size.height / 8)
+            ZStack{
+                
+                
+                Image("backgroundLevel1")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                Image("tiger")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250)
+                    .position(x: geo.size.width / 2, y: 80)
+                VStack{
+                    Image("trashCan")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                        .position(x: trashCanPosition.midX + 40, y: trashCanPosition.midY - 50)
+                }
+                trash
+                scoreArea
+                instruction
+                buttonInfo
+                if isInfoOpen{
+                    endemicInfo
+                }
+                if isFinishCollectTrash{
+                    finishAction
+                }
+                
+            }
+        }
+        
+    }
+    var buttonInfo: some View{
+        GeometryReader{geo in
+            Button(action: {
+                isInfoOpen = true
+            },label: {
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 75, height: 75)
+                    .shadow(radius: 10)
+                    .overlay(
+                        Image(systemName: "info.circle.fill")
+                            .font(.system(size: 50))
+                            .foregroundColor(Color.blue)
+                    )
+            })
+            .position(x: geo.size.width/1.1)
+            .padding(.top,50)
+        }
+    }
+
      var instruction: some View{
         GeometryReader{geo in
             ZStack{
