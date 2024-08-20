@@ -16,6 +16,35 @@ struct BrazilView: View {
     @State var isFinishPlantsTree: Bool = false
     @State var isInfoOpen: Bool = false
 
+    var body: some View {
+        GeometryReader{ geo in
+            
+            ZStack{
+                Image("backgroundLevel2")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                Image("cutTree").resizable().frame(width: 50,height: 50).offset(y: -300)
+                Image("cutTree").resizable().frame(width: 50,height: 50).offset(x: -190, y: -250)
+                Image("cutTree").resizable().frame(width: 50,height: 50).offset(x: -150, y: -350)
+                Image("cutTree").resizable().frame(width: 50,height: 50).offset(x: 150, y: -370)
+                lionArea
+                landArea
+                treeGroup
+                scoreArea
+                instruction
+                buttonInfo
+                if isInfoOpen{
+                    endemicInfo
+                }
+                if isFinishPlantsTree{
+                    finishAction
+                }
+            }
+        }
+        
+    }
+
+
     var buttonInfo: some View{
         GeometryReader{geo in
             Button(action: {
