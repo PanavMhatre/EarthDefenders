@@ -22,6 +22,124 @@ struct IndiaView: View {
     @State var isFinishCollectTrash: Bool = false
     @State var isInfoOpen: Bool = false
 
+    
+     var instruction: some View{
+        GeometryReader{geo in
+            ZStack{
+                HStack{
+                    Image("boy8")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geo.size.width/5)
+                    Text("Hey👋 \nThe river is full of trash, and the fish need your your help. Help save their habitat and help save Earth! Clean up the trash by 👆DRAG it into the trash can. Good Luck! ")
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .frame(width: geo.size.width/2)
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }.position(x: geo.size.width/2, y: geo.size.height/1.2)
+                
+            }
+        }
+    }
+    var endemicInfo: some View{
+        ZStack{
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                Image("India")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                
+                Text("Habitat INFO")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .padding(.horizontal)
+                    .background(Color.orange.opacity(0.8))
+                    .cornerRadius(20)
+                VStack(alignment:.leading){
+                    Text("Name")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("Yamuna River")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Text("About")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("The Yamuna river is one of India's most famosu rivers however the increased dumping of trash into the river has made it ugly. The Yamuna River has been in danger for many years impacting many exoctive species such as the Rohu and Sermai. In addition the trash has ridden the area of its natural beauty. Not only does it affect the fishes it also destroys lots of the local marine ecosystem as well. ")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                    Text("Conservation Status")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.leading)
+                    Text("Critically Endangered ")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                        .background(.red)
+                }
+                Button(action: {
+                    isInfoOpen = false
+                },label: {
+                    
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 75, height: 75)
+                        .shadow(radius: 10)
+                        .overlay(
+                            Image(systemName: "x.circle.fill")
+                                .font(.system(size: 50))
+                                .foregroundColor(Color.red)
+                        )
+                })
+                
+                
+            }
+            .padding(50)
+            .background(
+                Color.brown
+            )
+            .cornerRadius(25)
+            .padding(16)
+            .transition(AnyTransition.scale.animation(.easeInOut))
+        }
+    }
+    var scoreArea: some View{
+        GeometryReader{ geo in
+            HStack{
+                Image("trashCan")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 70)
+                    .padding(.horizontal)
+                Text("\(scoreCollectTrash) / 5")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+            }.padding()
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(radius: 10)
+                .padding(.horizontal,20)
+        }
+    }
+
     var finishAction: some View{
         ZStack{
             Color.black.opacity(0.4)
