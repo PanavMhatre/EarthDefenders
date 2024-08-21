@@ -13,7 +13,133 @@ struct USAView: View {
     @State var firePosition3 = CGPoint.zero
     @State var firePosition4 = CGPoint.zero
     @State var firePosition5 = CGPoint.zero
+    var body: some View {
+        GeometryReader { geo in
+            let waterPos = CGRect(x: geo.size.width / 2.6, y: geo.size.height / 2, width: geo.size.width / 6.5, height: geo.size.height / 8)
+            let waterRect = CGRect(x: waterPosition.x, y: waterPosition.y, width: 50, height: 50)
+            ZStack{
+                Image("backgroundLevel1")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack{
+                    // Water image with gesture
+                    Image("waterBucket")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200)
+                        .position(x: waterPos.midX + 40, y: waterPos.midY - 50)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    waterPosition = value.location
+                                }
+                                .onEnded { value in
+                                    // Check if water intersects with any fire
+                                    if waterRect.intersects(CGRect(origin: firePosition1, size: CGSize(width: 50, height: 50))) {
+                                        extinguishFire(position: 1)
+                                    } else if waterRect.intersects(CGRect(origin: firePosition2, size: CGSize(width: 50, height: 50))) {
+                                        extinguishFire(position: 2)
+                                    } else if waterRect.intersects(CGRect(origin: firePosition3, size: CGSize(width: 50, height: 50))) {
+                                        extinguishFire(position: 3)
+                                    } else if waterRect.intersects(CGRect(origin: firePosition4, size: CGSize(width: 50, height: 50))) {
+                                        extinguishFire(position: 4)
+                                    } else if waterRect.intersects(CGRect(origin: firePosition5, size: CGSize(width: 50, height: 50))) {
+                                        extinguishFire(position: 5)
+                                    }
+                                    waterPosition = CGPoint.zero // Reset water position
+                                }
+                            
+                        )
+                }
+                
+                // Fire images using individual positions
+                Image("fire")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .position(firePosition1)
+                
+                Image("fire")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .position(firePosition2)
+                
+                Image("fire")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .position(firePosition3)
+                
+                Image("fire")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .position(firePosition4)
+                
+                Image("fire")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .position(firePosition5)
+                
+                
+                
+                // Other views
+                scoreArea
+                instruction
+                buttonInfo
+                if isInfoOpen {
+                    endemicInfo
+                }
+                if isFinishExtinguishFire {
+                    finishAction
+                }
+            }
+            .onAppear {
+                // Set initial fire positions
+                firePosition1 = CGPoint(x: geo.size.width / 4, y: geo.size.height / 3.2)
+                firePosition2 = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
+                firePosition3 = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.2)
+                firePosition4 = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
+                firePosition5 = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
+            }
+            .onChange(of: geo.size) { _ in
+                // Update fire positions on size change
+                firePosition1 = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2.6)
+                firePosition2 = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
+                firePosition3 = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.2)
+                firePosition4 = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
+                firePosition5 = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
+            }
+        }
+    }
     
+    // Function to extinguish fire at given position
+    func extinguishFire(position: Int) {
+        withAnimation {
+            switch position {
+            case 1:
+                firePosition1 = CGPoint(x: -100, y: -100)
+            case 2:
+                firePosition2 = CGPoint(x: -100, y: -100)
+            case 3:
+                firePosition3 = CGPoint(x: -100, y: -100)
+            case 4:
+                firePosition4 = CGPoint(x: -100, y: -100)
+            case 5:
+                firePosition5 = CGPoint(x: -100, y: -100)
+            default:
+                break
+            }
+            scoreExtinguishFire += 1
+            if scoreExtinguishFire == 5 {
+                isFinishExtinguishFire.toggle()
+            }
+        }
+    }
+
     var endemicInfo: some View{
         ZStack{
             Color.black.opacity(0.4)
